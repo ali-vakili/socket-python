@@ -42,6 +42,7 @@ while True:
         #     # The message is not empty, so do something else
         #     print("Received a message from the client:", message)
         
+        actual_message = message
         message = message.upper()
         characters = []
         for character in message:
@@ -52,15 +53,19 @@ while True:
         key = random.choice(list(numbers.keys()))
         value = numbers[key]
 
-        print('\n- selected random key is ^{}^ and recived message is \"{}\"'.format(key, message.lower()))
+        print('\n- selected random key is ^{}^ and recived message is \"{}\"'.format(key, actual_message))
 
         # Convert the characters to their numeric values and add the value for the key
         numeric_values = [str(ord(character) + value) for character in characters]
-        print(f"- the numerical values of \"{message}\" is {numeric_values}\n")
-
+        print(f"- the values of \"{message}\" is {numeric_values}\n")
+        
         # Send the result back to the client
-        client_socket.send(f"{key}:{' '.join(numeric_values)}".encode())
-        print(f"result sent to client\n")
+        client_socket.send(f"{key}:{'$'.join(numeric_values)}".encode())
+        print(f"result sent to the client\n")
+
+    except KeyboardInterrupt:
+        print(f"\n--- Server Shut Downed ---")
+        break
 
     finally:
         # Clean up the connection
