@@ -1,5 +1,4 @@
 import socket
-import random
 
 # Read the file and store the keys and values in a dictionary
 with open('numbers.txt', 'r') as f:
@@ -8,10 +7,6 @@ with open('numbers.txt', 'r') as f:
         key, value = line.strip().split(':')
         numbers[int(key)] = int(value)
 
-
-# Select a random key from the dictionary
-# key = random.choice(list(numbers.keys()))
-# print(bytes([key]))
 
 # Create a TCP/IP socket
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

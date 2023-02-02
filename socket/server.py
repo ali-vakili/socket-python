@@ -33,21 +33,13 @@ while True:
 
         # Upper case the message and convert it to a list of characters
         message = data.decode()
-
-        # if len(message.strip()) == 0 or message is None:
-        #     # The message is empty
-        #     print("Received an empty message from the client")
-        #     client_socket.close()
-        # else:
-        #     # The message is not empty, so do something else
-        #     print("Received a message from the client:", message)
         
         actual_message = message
         message = message.upper()
+
         characters = []
         for character in message:
             characters.append(character)
-        # characters = list(message)
 
         # Select a random key and find it's value
         key = random.choice(list(numbers.keys()))
